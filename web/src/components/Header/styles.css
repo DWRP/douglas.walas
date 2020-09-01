@@ -1,0 +1,56 @@
+.logo{
+    width: 10vw;
+    height: 10vh;
+}
+
+.links{
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 8px auto;
+}
+
+.link,.menu-button{
+    margin: 0 4px;
+
+    border: none;
+    border-radius: 8px;
+
+    text-decoration: none;
+    font-weight: bold;
+
+    background-color: #142479;
+    color: white;
+
+    padding: .8rem;
+    
+}
+
+.menu-button{
+    width: 90%;
+}
+
+.show{
+    display: none;
+}
+
+@media (max-width:720px){
+    .links{
+        width: 90%;
+        flex-direction: column;
+    }
+    .link{
+        margin: 2px 0;
+        width: 100%;
+    }
+    .show{
+        display: block;
+    }
+
+    .hidden{
+        display: none;
+    }
+}
