@@ -3,13 +3,15 @@ import { Switch, Route } from 'react-router-dom'
 
 
 import Home from './pages/Home'
-import Services from './pages/Services'
+import Projects from './pages/Projects'
+import Contact from './pages/Contact'
 
 function Routes() {
   return (
         <Switch>
             <Route exact path="/" component={Home}/>
-            <Route path="/services" component={Services} />
+            <Route path="/projects" component={Projects} />
+            <Route path="/contact" component={Contact} />
         </Switch>
   );
 }

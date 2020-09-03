@@ -10,15 +10,11 @@ import Routes from './routes'
 function App() {
     
   return (
-      <div className="container">
-          <BrowserRouter>
-            <Header />
-            <Routes />
-            <Footer />
-          </BrowserRouter>
-      </div>
-      
-
+        <BrowserRouter>
+        <Header />
+        <Routes />
+        <Footer />
+        </BrowserRouter>
   );
 }
 

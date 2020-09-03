@@ -1,0 +1,52 @@
+.menu{
+    align-self: center;
+
+    width: 50%;
+    
+    margin-bottom: 14px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    list-style: none;
+    font-size: 18pt;
+
+    border-radius: 0 0 12px 12px;
+
+}
+
+.menu_item{
+    width: 100%;
+    padding: 8px;
+    
+    text-decoration: none;
+    text-align: center;
+    
+    background: #14794F;
+    color: #FFF;
+}
+
+.menu_item:hover{
+    opacity: .8;
+    background: rgb(0, 19, 70);
+    color: rgb(255, 255, 255);
+}
+
+.home{
+    border-bottom-left-radius: 15px;
+}
+.contact{
+    border-bottom-right-radius: 15px;
+}
+
+.select{
+    background: #DCDCDD;
+    color: #142479;
+}
+
+@media (max-width:720px){
+    .menu{
+        font-size: 100%;
+    }
+}
