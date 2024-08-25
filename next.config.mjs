@@ -6,6 +6,8 @@ const isGithubActions = process.env.GITHUB_ACTIONS || false;
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  assetPrefix: "/",
+  basePath: "/dwrp.github.io",
   images: {
     dangerouslyAllowSVG: true,
     remotePatterns: [
