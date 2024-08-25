@@ -1,0 +1,58 @@
+{
+    "Index": {
+        "nav": {
+            "about": "Sobre mim",
+            "skills": "Habilidades",
+            "projects": "Projetos",
+            "contact": "Contato",
+            "locales": {
+                "en": "Inglês",
+                "pt-BR": "Português"
+            }
+        },
+        "hero": {
+            "title": "Desenvolvedor Fullstack Extraordinário",
+            "subtitle": "Unindo o frontend e o backend para criar aplicações web fluidas e escaláveis.",
+            "cta": {
+                "projects": "Ver Projetos",
+                "contact": "Contate-me"
+            }
+        },
+        "about": {
+            "title": "Sobre Mim",
+            "content1": "Olá, sou Douglas Pardim, um desenvolvedor fullstack apaixonado com mais de 5 anos de experiência na criação de aplicações web robustas. Eu me especializo em ecossistemas JavaScript, com experiência em React, React Native e Node.js.",
+            "content2": "Meu enfoque combina práticas de código limpo, otimização de performance e design centrado no usuário para oferecer experiências digitais excepcionais."
+        },
+        "skills": {
+            "title": "Habilidades e Experiência",
+            "frontend": "Frontend",
+            "backend": "Backend"
+        },
+        "projects": {
+            "title": "Projetos Destacados",
+            "ecommerce": "Plataforma de Comércio Eletrônico",
+            "ecommerce-desc": "Uma loja online completa com React e Node.js",
+            "taskmanager": "Aplicativo de Gestão de Tarefas",
+            "taskmanager-desc": "Ferramenta de colaboração em tempo real usando Socket.io e React",
+            "blogcms": "CMS para Blog",
+            "blogcms-desc": "Sistema de gerenciamento de conteúdo personalizado com Next.js e GraphQL",
+            "cta": "Ver Projeto"
+        },
+        "contact": {
+            "title": "Entre em Contato",
+            "info": "Informações de Contato",
+            "form": {
+                "name": "Seu Nome",
+                "email": "Seu Email",
+                "message": "Sua Mensagem",
+                "submit": "Enviar Mensagem"
+            }
+        },
+        "footer": {
+            "rights": "© 2023 Douglas Pardim. Todos os direitos reservados."
+        },
+        "switchToLightMode": "Mudar para o modo claro",
+        "switchToDarkMode": "Mudar para o modo escuro",
+        "formSubmissionAlert": "Obrigado pela sua mensagem! Entrarei em contato com você em breve."
+    }
+}
