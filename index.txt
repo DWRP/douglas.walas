@@ -1,6 +1,6 @@
 2:I[6513,[],"ClientPageRoot"]
 3:I[7995,["289","static/chunks/289-76b523d11bc6cd6c.js","931","static/chunks/app/page-8235d8efb4b34e98.js"],"default"]
-0:["l_Ygz7HUra0zyHnvP1rGd",[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],["",{"children":["__PAGE__",{},[["$L1",["$","$L2",null,{"props":{"params":{},"searchParams":{}},"Component":"$3"}]],null],null]},["$L4",null],null],[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/a07fbc44859af00c.css","precedence":"next","crossOrigin":"$undefined"}]],[null,"$L5"]]]]]
+0:["2GjIJDsoAMCuD_tSlnp-V",[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],["",{"children":["__PAGE__",{},[["$L1",["$","$L2",null,{"props":{"params":{},"searchParams":{}},"Component":"$3"}]],null],null]},["$L4",null],null],[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/a07fbc44859af00c.css","precedence":"next","crossOrigin":"$undefined"}]],[null,"$L5"]]]]]
 5:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Douglas Pardim Developer"}],["$","meta","3",{"name":"description","content":"Fullstack Developer using React, React Native & Node"}],["$","link","4",{"rel":"icon","href":"/favicon.ico","type":"image/x-icon","sizes":"256x256"}],["$","meta","5",{"name":"next-size-adjust"}]]
 1:null
 4:E{"digest":"NEXT_NOT_FOUND"}
