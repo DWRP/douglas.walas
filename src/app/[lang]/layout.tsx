@@ -11,6 +11,10 @@ export const metadata: Metadata = {
   description: "Fullstack Developer using React, React Native & Node",
 };
 
+export async function generateStaticParams() {
+  return [{ locale: 'en' }, { locale: 'pt-BR' }];
+}
+
 export default async function LocaleLayout({
   children,
   params: { locale },
