@@ -1,15 +1,12 @@
-import createNextIntlPlugin from "next-intl/plugin";
-
-const withNextIntl = createNextIntlPlugin();
-
 const isGithubActions = process.env.GITHUB_ACTIONS || false;
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   assetPrefix: "/",
-  basePath: "/dwrp.github.io",
+  reactStrictMode: true,
   images: {
     dangerouslyAllowSVG: true,
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
@@ -23,6 +20,7 @@ const nextConfig = {
   },
   trailingSlash: true,
   ...(isGithubActions && { output: "export" }),
+  output: "export",
 };
 
-export default withNextIntl(nextConfig);
+export default nextConfig;

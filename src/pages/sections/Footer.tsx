@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 
-export const Footer = () => {
+const Footer = () => {
   const t = useTranslations("Index");
 
   return (
@@ -30,3 +30,5 @@ export const Footer = () => {
     </footer>
   );
 };
+
+export default Footer;

@@ -9,7 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-export const Main = () => {
+const Main = () => {
   const t = useTranslations("Index");
 
   const [formData, setFormData] = useState({
@@ -269,3 +269,5 @@ export const Main = () => {
     </main>
   );
 };
+
+export default Main;

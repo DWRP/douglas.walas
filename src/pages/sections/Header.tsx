@@ -13,7 +13,7 @@ import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 
-export const Header = ({
+const Header = ({
   isDarkMode,
   setIsDarkMode,
   changeLanguage,
@@ -30,13 +30,18 @@ export const Header = ({
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  const checkActiveLink = (link: string) => isActiveLink === link ? 'text-blue-500' : ''
+  const checkActiveLink = (link: string) =>
+    isActiveLink === link ? "text-blue-500" : "";
 
-  const updateActiveLink = (link?: string) => setIsActiveLink(link)
+  const updateActiveLink = (link?: string) => setIsActiveLink(link);
 
   return (
     <header className="fixed w-full bg-background px-4 lg:px-6 h-14 flex items-center justify-between border-b">
-      <Link className="flex items-center" href="#" onClick={() => updateActiveLink()}>
+      <Link
+        className="flex items-center"
+        href="#"
+        onClick={() => updateActiveLink()}
+      >
         <Image src="/dwrp.svg" alt="logotype" width={40} height={40} />
         <span className="font-bold ml-2">Douglas Pardim</span>
       </Link>
@@ -47,7 +52,7 @@ export const Header = ({
             "about"
           )}`}
           href="#about"
-          onClick={() => updateActiveLink('about')}
+          onClick={() => updateActiveLink("about")}
         >
           {t("nav.about")}
         </Link>
@@ -56,7 +61,7 @@ export const Header = ({
             "skills"
           )}`}
           href="#skills"
-          onClick={() => updateActiveLink('skills')}
+          onClick={() => updateActiveLink("skills")}
         >
           {t("nav.skills")}
         </Link>
@@ -65,7 +70,7 @@ export const Header = ({
             "projects"
           )}`}
           href="#projects"
-          onClick={() => updateActiveLink('projects')}
+          onClick={() => updateActiveLink("projects")}
         >
           {t("nav.projects")}
         </Link>
@@ -74,7 +79,7 @@ export const Header = ({
             "contact"
           )}`}
           href="#contact"
-          onClick={() => updateActiveLink('contact')}
+          onClick={() => updateActiveLink("contact")}
         >
           {t("nav.contact")}
         </Link>
@@ -163,3 +168,5 @@ export const Header = ({
     </header>
   );
 };
+
+export default Header;
