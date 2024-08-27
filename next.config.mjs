@@ -20,7 +20,6 @@ const nextConfig = {
   },
   trailingSlash: true,
   ...(isGithubActions && { output: "export" }),
-  output: "export",
 };
 
 export default nextConfig;

@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import Header from "./sections/Header";
 import Main from "./sections/Main";
 import Footer from "./sections/Footer";
+import Head from "next/head";
 
 export default function FullstackDeveloperLanding() {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -22,6 +23,9 @@ export default function FullstackDeveloperLanding() {
 
   return (
     <div className={`flex flex-col min-h-screen ${isDarkMode ? "dark" : ""}`}>
+      <Head>
+        <title>Douglas Pardim Developer</title>
+      </Head>
       <Header
         {...{
           changeLanguage,
