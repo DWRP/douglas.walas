@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { addNewContact } from "@/services/contact";
 import { Github, Linkedin, Mail, Send } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
@@ -19,9 +20,14 @@ const Main = () => {
   });
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    alert(t("formSubmissionAlert"));
+    const res = await addNewContact(formData);
+
     setFormData({ name: "", email: "", message: "" });
+
+    if (res?.id) {
+      return alert(t("formSubmissionAlert"));
+    }
+    return alert(t("formSubmissionError"));
   };
 
   const handleChange = (
@@ -31,7 +37,7 @@ const Main = () => {
   };
 
   return (
-    <main className="flex-1">
+    <main className="flex-1 mt-14">
       <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-gradient-to-r from-purple-500 to-pink-500">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center space-y-4 text-center">
@@ -149,36 +155,36 @@ const Main = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Card>
-              <CardContent className="p-6">
+              <CardContent className="p-6 h-full flex flex-col justify-around">
                 <h3 className="text-xl font-bold mb-2">
-                  {t("projects.ecommerce")}
+                  {t("projects.projects-infos.app-ideas.name")}
                 </h3>
                 <p className="text-muted-foreground mb-4">
-                  {t("projects.ecommerce-desc")}
+                  {t("projects.projects-infos.app-ideas.desc")}
                 </p>
-                <Button variant="outline">{t("projects.cta")}</Button>
+                <Link
+                  href={t("projects.projects-infos.app-ideas.link")}
+                  target="__blank"
+                >
+                  <Button variant="outline">{t("projects.cta")}</Button>
+                </Link>
               </CardContent>
             </Card>
+
             <Card>
-              <CardContent className="p-6">
+              <CardContent className="p-6 h-full flex flex-col justify-around">
                 <h3 className="text-xl font-bold mb-2">
-                  {t("projects.taskmanager")}
+                  {t("projects.projects-infos.ominix.name")}
                 </h3>
                 <p className="text-muted-foreground mb-4">
-                  {t("projects.taskmanager-desc")}
+                  {t("projects.projects-infos.ominix.desc")}
                 </p>
-                <Button variant="outline">{t("projects.cta")}</Button>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold mb-2">
-                  {t("projects.blogcms")}
-                </h3>
-                <p className="text-muted-foreground mb-4">
-                  {t("projects.blogcms-desc")}
-                </p>
-                <Button variant="outline">{t("projects.cta")}</Button>
+                <Link
+                  href={t("projects.projects-infos.ominix.link")}
+                  target="__blank"
+                >
+                  <Button variant="outline">{t("projects.cta")}</Button>
+                </Link>
               </CardContent>
             </Card>
           </div>

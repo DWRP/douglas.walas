@@ -30,6 +30,18 @@
         },
         "projects": {
             "title": "Highlighted Projects",
+            "projects-infos": {
+                "app-ideas": {
+                    "name": "APP IDEAS",
+                    "desc": "A compendium of codes designed to exhibit a diverse range of skills and coding aptitude.",
+                    "link": "https://dwrp.github.io/app-ideas/"
+                },
+                "ominix": {
+                    "name": "OMINIX",
+                    "desc": "Built a basic NPM package with Express.js for backend practice. Gained valuable technical knowledge.",
+                    "link": "https://www.npmjs.com/package/ominix"
+                }
+            },
             "ecommerce": "E-commerce Platform",
             "ecommerce-desc": "A complete online store with React and Node.js",
             "taskmanager": "Task Management App",
@@ -53,6 +65,7 @@
         },
         "switchToLightMode": "Switch to Light Mode",
         "switchToDarkMode": "Switch to Dark Mode",
-        "formSubmissionAlert": "Thank you for your message! I will get back to you soon."
+        "formSubmissionAlert": "Thank you for your message! I will get back to you soon.",
+        "formSubmissionError": "We cannot send this message, please, try again!"
     }
 }

@@ -30,6 +30,18 @@
         },
         "projects": {
             "title": "Projetos Destacados",
+            "projects-infos": {
+                "app-ideas": {
+                    "name": "APP IDEAS",
+                    "desc": "Um compilado de códigos que tendem a demonstrar uma habilidade diferente e mostrar proficiência com código.",
+                    "link": "https://dwrp.github.io/app-ideas/"
+                },
+                "ominix": {
+                    "name": "OMINIX",
+                    "desc": "Desenvolvi um pacote NPM básico com Express.js para praticar programação back-end. Aprendi lições importantes sobre tecnologia.",
+                    "link": "https://www.npmjs.com/package/ominix"
+                }
+            },
             "ecommerce": "Plataforma de Comércio Eletrônico",
             "ecommerce-desc": "Uma loja online completa com React e Node.js",
             "taskmanager": "Aplicativo de Gestão de Tarefas",
@@ -53,6 +65,7 @@
         },
         "switchToLightMode": "Mudar para o modo claro",
         "switchToDarkMode": "Mudar para o modo escuro",
-        "formSubmissionAlert": "Obrigado pela sua mensagem! Entrarei em contato com você em breve."
+        "formSubmissionAlert": "Obrigado pela sua mensagem! Entrarei em contato com você em breve.",
+        "formSubmissionError": "Nós não conseguimos enviar essa mensagem, por favor, tente novamente!"
     }
 }
