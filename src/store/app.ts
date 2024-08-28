@@ -17,7 +17,7 @@ interface AppState {
 export const useAppStore = create(
   persist<AppState>(
     (set) => ({
-      theme: "light",
+      theme: "dark",
       lang: "en",
       activeMenu: "",
       setActiveMenu: (activeMenu: string) => {

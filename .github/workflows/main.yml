@@ -1,4 +1,4 @@
-name: Deploy Next.js site to Pages
+name: Deploy with Next.js on GH-Pages
 on:
   push:
     branches: ["main"]
