@@ -4,6 +4,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue)](https://opensource.org/licenses/MIT)
 [![Author](https://img.shields.io/badge/author-Douglas%20Pardim-orange)](https://github.com/dwrp)
 [![CI/CD](https://github.com/dwrp/dwrp.github.io/actions/workflows/main.yml/badge.svg)](https://github.com/dwrp/dwrp.github.io/actions)
+[![Portuguese](https://img.shields.io/badge/SEE_IN_-PT--BR-green?style=flat)](./README-pt.md)
 
 Welcome to my personal website! This repository contains the source code for my personal site, where I introduce myself, showcase the technologies I use, my projects, and provide contact information.
 
