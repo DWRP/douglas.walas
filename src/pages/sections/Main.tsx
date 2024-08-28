@@ -8,37 +8,102 @@ import { Github, Linkedin, Mail, Send } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { LegacyRef, useEffect, useRef, useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { CircularLoading } from "@/components/Loading";
+import { useAppStore } from "@/store/app";
+
+const formSchema = z.object({
+  name: z.string().min(1, "Nome não pode ser vazio"),
+  email: z.string().min(1, "Email não pode ser vazio"),
+  message: z.string().min(1, "Mensagem não pode ser vazia"),
+});
+
+type FormProps = z.infer<typeof formSchema>;
 
 const Main = () => {
   const t = useTranslations("Index");
+  const { activeMenu, setActiveMenu } = useAppStore();
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
+  const { register, handleSubmit, reset } = useForm<FormProps>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
+    },
   });
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const res = await addNewContact(formData);
 
-    setFormData({ name: "", email: "", message: "" });
+  const [loading, setLoading] = useState(false);
 
+  const onSubmit = async (data: FormProps) => {
+    setLoading(true);
+    const res = await addNewContact(data);
+
+    reset({ name: "", email: "", message: "" });
+
+    setLoading(false);
     if (res?.id) {
       return alert(t("formSubmissionAlert"));
     }
     return alert(t("formSubmissionError"));
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const sectionsRef = useRef<HTMLElement[]>([]);
+  const [activeSection, setActiveSection] = useState<string>("");
+
+  useEffect(() => {
+    // Armazena as referências das seções
+    const sections = document.querySelectorAll("section");
+    sectionsRef.current = Array.from(sections) as HTMLElement[];
+
+    const handleScroll = () => {
+      // Identifica a seção atualmente em foco
+      const scrollPosition = window.scrollY + window.innerHeight / 3;
+      let currentSection = "";
+
+      sectionsRef.current.forEach((section) => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+
+        if (
+          scrollPosition >= sectionTop &&
+          scrollPosition < sectionTop + sectionHeight
+        ) {
+          currentSection = section.getAttribute("id") || "";
+        }
+      });
+
+      // Atualiza o hash da URL apenas se a seção mudou
+      if (currentSection && currentSection !== activeSection) {
+        setActiveSection(currentSection);
+        window.history.replaceState(null, "", `#${currentSection}`);
+        console.log({ currentSection });
+        setActiveMenu(currentSection);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [activeSection, setActiveMenu]);
+
+  useEffect(() => {
+    if (location.hash) {
+      window.location.replace(location.hash);
+    }
+  }, []);
 
   return (
     <main className="flex-1 mt-14">
-      <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-gradient-to-r from-purple-500 to-pink-500">
+      <section
+        id="home"
+        className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-gradient-to-r from-purple-500 to-pink-500"
+      >
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center space-y-4 text-center">
             <div className="space-y-2">
@@ -113,6 +178,8 @@ const Main = () => {
                     "Next.js",
                     "TypeScript",
                     "Tailwind CSS",
+                    "Styled Components",
+                    "Zustand",
                     "Redux",
                     "GraphQL",
                   ].map((skill) => (
@@ -123,6 +190,7 @@ const Main = () => {
                 </div>
               </CardContent>
             </Card>
+
             <Card>
               <CardContent className="p-6">
                 <h3 className="text-2xl font-bold mb-4">
@@ -131,11 +199,58 @@ const Main = () => {
                 <div className="flex flex-wrap gap-2">
                   {[
                     "Node.js",
+                    "NestJs",
                     "Express",
                     "PostgreSQL",
                     "MongoDB",
-                    "RESTful APIs",
+                    "REST",
+                    "GraphQL",
                     "Docker",
+                  ].map((skill) => (
+                    <Badge key={skill} variant="secondary">
+                      {skill}
+                    </Badge>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="text-2xl font-bold mb-4">
+                  {t("skills.mobile")}
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    "React Native",
+                    "Expo",
+                    "Maps",
+                    "Notifications",
+                    "Firebase",
+                    "Flutter",
+                  ].map((skill) => (
+                    <Badge key={skill} variant="secondary">
+                      {skill}
+                    </Badge>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="text-2xl font-bold mb-4">
+                  {t("skills.devops")}
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    "Docker",
+                    "Kubernets",
+                    "AWS",
+                    "GCP",
+                    "Azure Devops",
+                    "Lambda",
+                    "S3",
                   ].map((skill) => (
                     <Badge key={skill} variant="secondary">
                       {skill}
@@ -239,32 +354,35 @@ const Main = () => {
             </Card>
             <Card>
               <CardContent className="p-6">
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                   <Input
-                    name="name"
                     placeholder={t("contact.form.name")}
-                    value={formData.name}
-                    onChange={handleChange}
                     required
+                    {...register("name")}
+                    disabled={loading}
                   />
                   <Input
-                    name="email"
                     type="email"
                     placeholder={t("contact.form.email")}
-                    value={formData.email}
-                    onChange={handleChange}
                     required
+                    {...register("email")}
+                    disabled={loading}
                   />
                   <Textarea
-                    name="message"
                     placeholder={t("contact.form.message")}
-                    value={formData.message}
-                    onChange={handleChange}
                     required
+                    {...register("message")}
+                    disabled={loading}
                   />
                   <Button type="submit" className="w-full">
-                    {t("contact.form.submit")}
-                    <Send className="ml-2 h-4 w-4" />
+                    {loading ? (
+                      <CircularLoading />
+                    ) : (
+                      <>
+                        {t("contact.form.submit")}
+                        <Send className="ml-2 h-4 w-4" />
+                      </>
+                    )}
                   </Button>
                 </form>
               </CardContent>
