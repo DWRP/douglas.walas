@@ -31,7 +31,7 @@ const Header = ({
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const checkActiveLink = (link: string) =>
-    activeMenu === link ? "text-blue-500" : "";
+    activeMenu === link ? "text-gray-500" : "";
 
   const updateActiveLink = (link?: string) => setActiveMenu(link || "");
 
@@ -136,28 +136,36 @@ const Header = ({
         </button>
         <nav className="flex flex-col items-start p-4 mt-8 space-y-4">
           <Link
-            className="text-sm font-medium hover:underline underline-offset-4"
+            className={`text-sm font-medium hover:underline underline-offset-4 ${checkActiveLink(
+              "about"
+            )}`}
             href="#about"
             onClick={toggleMenu}
           >
             {t("nav.about")}
           </Link>
           <Link
-            className="text-sm font-medium hover:underline underline-offset-4"
+            className={`text-sm font-medium hover:underline underline-offset-4 ${checkActiveLink(
+              "skills"
+            )}`}
             href="#skills"
             onClick={toggleMenu}
           >
             {t("nav.skills")}
           </Link>
           <Link
-            className="text-sm font-medium hover:underline underline-offset-4"
+            className={`text-sm font-medium hover:underline underline-offset-4 ${checkActiveLink(
+              "projects"
+            )}`}
             href="#projects"
             onClick={toggleMenu}
           >
             {t("nav.projects")}
           </Link>
           <Link
-            className="text-sm font-medium hover:underline underline-offset-4"
+            className={`text-sm font-medium hover:underline underline-offset-4 ${checkActiveLink(
+              "contact"
+            )}`}
             href="#contact"
             onClick={toggleMenu}
           >
