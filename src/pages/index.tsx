@@ -1,25 +1,28 @@
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import Header from "./sections/Header";
 import Main from "./sections/Main";
 import Footer from "./sections/Footer";
 import Head from "next/head";
+import { useAppStore } from "@/store/app";
+import { Locale } from "@/locales";
 
 export default function FullstackDeveloperLanding() {
-  const [isDarkMode, setIsDarkMode] = useState(true);
-  const router = useRouter();
+  const { theme, setTheme, setLocale } = useAppStore();
+  const [isDarkMode, setIsDarkMode] = useState(theme === "dark");
 
-  const changeLanguage = (newLang: string) => {
-    router.push(`/?lang=${newLang}${window.location.hash}`);
+  const changeLanguage = (newLang: Locale) => {
+    setLocale(newLang);
   };
 
   useEffect(() => {
     if (isDarkMode) {
+      setTheme("dark");
       document.documentElement.classList.add("dark");
     } else {
+      setTheme("light");
       document.documentElement.classList.remove("dark");
     }
-  }, [isDarkMode]);
+  }, [isDarkMode, setTheme]);
 
   return (
     <div className={`flex flex-col min-h-screen ${isDarkMode ? "dark" : ""}`}>

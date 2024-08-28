@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -7,11 +7,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { locales } from "@/locales";
+import { Locale, locales } from "@/locales";
 import { Moon, Sun, Menu } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
+import { useAppStore } from "@/store/app";
 
 const Header = ({
   isDarkMode,
@@ -20,26 +21,25 @@ const Header = ({
 }: {
   isDarkMode: boolean;
   setIsDarkMode: (dark: boolean) => void;
-  changeLanguage: (lang: string) => void;
+  changeLanguage: (lang: Locale) => void;
 }) => {
   const t = useTranslations("Index");
-  const lang = useLocale();
+  const { lang, activeMenu, setActiveMenu } = useAppStore();
 
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const [isActiveLink, setIsActiveLink] = useState<string>();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const checkActiveLink = (link: string) =>
-    isActiveLink === link ? "text-blue-500" : "";
+    activeMenu === link ? "text-blue-500" : "";
 
-  const updateActiveLink = (link?: string) => setIsActiveLink(link);
+  const updateActiveLink = (link?: string) => setActiveMenu(link || "");
 
   return (
     <header className="fixed w-full bg-background px-4 lg:px-6 h-14 flex items-center justify-between border-b">
       <Link
         className="flex items-center"
-        href="#"
+        href="#home"
         onClick={() => updateActiveLink()}
       >
         <Image src="/dwrp.svg" alt="logotype" width={40} height={40} />
