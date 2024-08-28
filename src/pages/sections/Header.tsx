@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -7,11 +7,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { locales } from "@/locales";
+import { Locale, locales } from "@/locales";
 import { Moon, Sun, Menu } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
+import { useAppStore } from "@/store/app";
 
 const Header = ({
   isDarkMode,
@@ -20,26 +21,25 @@ const Header = ({
 }: {
   isDarkMode: boolean;
   setIsDarkMode: (dark: boolean) => void;
-  changeLanguage: (lang: string) => void;
+  changeLanguage: (lang: Locale) => void;
 }) => {
   const t = useTranslations("Index");
-  const lang = useLocale();
+  const { lang, activeMenu, setActiveMenu } = useAppStore();
 
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const [isActiveLink, setIsActiveLink] = useState<string>();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const checkActiveLink = (link: string) =>
-    isActiveLink === link ? "text-blue-500" : "";
+    activeMenu === link ? "text-gray-500" : "";
 
-  const updateActiveLink = (link?: string) => setIsActiveLink(link);
+  const updateActiveLink = (link?: string) => setActiveMenu(link || "");
 
   return (
     <header className="fixed w-full bg-background px-4 lg:px-6 h-14 flex items-center justify-between border-b">
       <Link
         className="flex items-center"
-        href="#"
+        href="#home"
         onClick={() => updateActiveLink()}
       >
         <Image src="/dwrp.svg" alt="logotype" width={40} height={40} />
@@ -136,28 +136,36 @@ const Header = ({
         </button>
         <nav className="flex flex-col items-start p-4 mt-8 space-y-4">
           <Link
-            className="text-sm font-medium hover:underline underline-offset-4"
+            className={`text-sm font-medium hover:underline underline-offset-4 ${checkActiveLink(
+              "about"
+            )}`}
             href="#about"
             onClick={toggleMenu}
           >
             {t("nav.about")}
           </Link>
           <Link
-            className="text-sm font-medium hover:underline underline-offset-4"
+            className={`text-sm font-medium hover:underline underline-offset-4 ${checkActiveLink(
+              "skills"
+            )}`}
             href="#skills"
             onClick={toggleMenu}
           >
             {t("nav.skills")}
           </Link>
           <Link
-            className="text-sm font-medium hover:underline underline-offset-4"
+            className={`text-sm font-medium hover:underline underline-offset-4 ${checkActiveLink(
+              "projects"
+            )}`}
             href="#projects"
             onClick={toggleMenu}
           >
             {t("nav.projects")}
           </Link>
           <Link
-            className="text-sm font-medium hover:underline underline-offset-4"
+            className={`text-sm font-medium hover:underline underline-offset-4 ${checkActiveLink(
+              "contact"
+            )}`}
             href="#contact"
             onClick={toggleMenu}
           >

@@ -2,31 +2,29 @@ import { NextIntlClientProvider } from "next-intl";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
-import { defaultLocale } from "@/locales";
+import { defaultLocale, Locale } from "@/locales";
 import { useEffect, useState } from "react";
+import { useAppStore } from "@/store/app";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const router = useRouter();
+  const { lang, setLocale, setActiveMenu } = useAppStore();
 
   const [messages, setMessages] = useState(null);
-  const [locale, setLocale] = useState(router.locale);
 
   useEffect(() => {
-    const queryLocale = (router.query.lang as string) || "en";
-    setLocale(queryLocale);
-
-    import(`../../messages/${queryLocale}.json`).then((module) => {
+    import(`../../messages/${lang || "en"}.json`).then((module) => {
       setMessages(module.default);
     });
-  }, [router.query.lang]);
+  }, [lang, setLocale]);
+
+  useEffect(() => {
+    return () => setActiveMenu("");
+  }, []);
 
   if (!messages) return null;
 
   return (
-    <NextIntlClientProvider
-      locale={locale || defaultLocale}
-      messages={messages}
-    >
+    <NextIntlClientProvider locale={lang || defaultLocale} messages={messages}>
       <Component {...pageProps} />
     </NextIntlClientProvider>
   );

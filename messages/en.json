@@ -11,7 +11,7 @@
             }
         },
         "hero": {
-            "title": "Extraordinary Fullstack Developer",
+            "title": "Fullstack Developer React, React Native & Node",
             "subtitle": "Bringing frontend and backend together to create fluid and scalable web applications.",
             "cta": {
                 "projects": "View Projects",
@@ -26,7 +26,9 @@
         "skills": {
             "title": "Skills and Experience",
             "frontend": "Frontend",
-            "backend": "Backend"
+            "backend": "Backend",
+            "mobile": "Mobile",
+            "devops": "DevOps"
         },
         "projects": {
             "title": "Highlighted Projects",
