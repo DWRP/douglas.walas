@@ -1,3 +1,4 @@
+import analyzer from "@next/bundle-analyzer";
 const isGithubActions = process.env.GITHUB_ACTIONS || false;
 
 /** @type {import('next').NextConfig} */
@@ -22,4 +23,8 @@ const nextConfig = {
   ...(isGithubActions && { output: "export" }),
 };
 
-export default nextConfig;
+const withBundleAnalyzer = analyzer({
+  enabled: process.env.ANALYZE === "true",
+});
+
+export default withBundleAnalyzer(nextConfig);

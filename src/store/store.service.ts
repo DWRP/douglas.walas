@@ -1,8 +1,4 @@
-import {
-  createJSONStorage,
-  PersistStorage,
-  type StateStorage,
-} from "zustand/middleware";
+import { createJSONStorage, PersistStorage } from "zustand/middleware";
 
 export const storage: PersistStorage<any> | undefined = createJSONStorage(
   () => ({

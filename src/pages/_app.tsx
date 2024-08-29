@@ -1,8 +1,7 @@
 import { NextIntlClientProvider } from "next-intl";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { useRouter } from "next/router";
-import { defaultLocale, Locale } from "@/locales";
+import { defaultLocale } from "@/locales";
 import { useEffect, useState } from "react";
 import { useAppStore } from "@/store/app";
 
@@ -19,7 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     return () => setActiveMenu("");
-  }, []);
+  }, [setActiveMenu]);
 
   if (!messages) return null;
 
