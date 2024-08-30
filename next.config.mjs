@@ -25,7 +25,7 @@ const nextConfig = withNextIntl({
   },
   trailingSlash: true,
   ...(isGithubActions && { output: "export" }),
-  // output: "export"
+  output: "export"
 });
 
 const withBundleAnalyzer = analyzer({
