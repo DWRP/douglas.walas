@@ -36,11 +36,10 @@ jobs:
       - name: Install dependencies
         run: yarn
       - name: Save cache
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v3
         with:
-          path: path/to/dependencies
-          restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
+          path: .next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Build with Next.js
         env:
           NEXT_PUBLIC_API_URL: ${{ vars.NEXT_PUBLIC_API_URL }}
