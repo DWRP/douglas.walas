@@ -35,15 +35,16 @@ jobs:
           fail-on-cache-miss: false
       - name: Install dependencies
         run: yarn
-      - name: Save cache
-        uses: actions/cache/save@v3
-        with:
-          path: .next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Build with Next.js
         env:
           NEXT_PUBLIC_API_URL: ${{ vars.NEXT_PUBLIC_API_URL }}
         run: yarn next build
+      - name: Save cache
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            .next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

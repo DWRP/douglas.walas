@@ -25,7 +25,7 @@ type FormProps = z.infer<typeof formSchema>;
 
 const Main = () => {
   const t = useTranslations("Index");
-  const { activeMenu, setActiveMenu } = useAppStore();
+  const { setActiveMenu } = useAppStore();
 
   const { register, handleSubmit, reset } = useForm<FormProps>({
     resolver: zodResolver(formSchema),
@@ -55,12 +55,10 @@ const Main = () => {
   const [activeSection, setActiveSection] = useState<string>("");
 
   useEffect(() => {
-    // Armazena as referências das seções
     const sections = document.querySelectorAll("section");
     sectionsRef.current = Array.from(sections) as HTMLElement[];
 
     const handleScroll = () => {
-      // Identifica a seção atualmente em foco
       const scrollPosition = window.scrollY + window.innerHeight / 3;
       let currentSection = "";
 
@@ -80,7 +78,6 @@ const Main = () => {
       if (currentSection && currentSection !== activeSection) {
         setActiveSection(currentSection);
         window.history.replaceState(null, "", `#${currentSection}`);
-        console.log({ currentSection });
         setActiveMenu(currentSection);
       }
     };
@@ -94,7 +91,7 @@ const Main = () => {
 
   useEffect(() => {
     if (location.hash) {
-      window.location.replace(location.hash);
+      window.location.replace(location.href);
     }
   }, []);
 
