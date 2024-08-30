@@ -30,19 +30,10 @@ export const metadata: Metadata = {
   },
 };
 
-
-
 export default async function RootLayout({
   children,
-  params: { locale },
 }: {
   children: React.ReactNode;
-  params: { locale: string };
 }) {
-
-  return (
-    <html lang={locale}>
-      <body suppressHydrationWarning={true}>{children}</body>
-    </html>
-  );
+  return children;
 }

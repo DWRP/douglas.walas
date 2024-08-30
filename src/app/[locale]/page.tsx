@@ -11,15 +11,18 @@ import { useLocale } from "next-intl";
 
 export default function RootPage() {
   const router = useRouter();
-  const locale = useLocale()
+  const locale = useLocale();
 
-  const { lang, theme, setTheme, setLocale, setActiveMenu } = useAppStore();
+  const { theme, setTheme, setLocale, setActiveMenu } = useAppStore();
   const [isDarkMode, setIsDarkMode] = useState(theme === "dark");
 
-  const changeLanguage = async (newLang: Locale) => {
-    setLocale(newLang);
-    router.push(`/${newLang}${location.hash}`);
-  };
+  const changeLanguage = useCallback(
+    async (newLang: Locale) => {
+      setLocale(newLang);
+      router.push(`/${newLang}${location.hash}`);
+    },
+    [router, setLocale]
+  );
 
   useEffect(() => {
     if (isDarkMode) {
@@ -34,7 +37,7 @@ export default function RootPage() {
   useEffect(() => {
     changeLanguage(locale as Locale);
     return () => setActiveMenu("");
-  }, []);
+  }, [changeLanguage, locale, setActiveMenu]);
 
   return (
     <div className={`flex flex-col min-h-screen ${isDarkMode ? "dark" : ""}`}>

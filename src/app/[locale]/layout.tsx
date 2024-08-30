@@ -18,11 +18,15 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <NextIntlClientProvider
-      locale={locale || defaultLocale}
-      messages={messages}
-    >
-      {children}
-    </NextIntlClientProvider>
+    <html lang={locale}>
+      <body suppressHydrationWarning={true}>
+        <NextIntlClientProvider
+          locale={locale || defaultLocale}
+          messages={messages}
+        >
+          {children}
+        </NextIntlClientProvider>
+      </body>
+    </html>
   );
 }
