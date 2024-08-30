@@ -118,7 +118,7 @@ const Main = () => {
               <Link href="#contact">
                 <Button
                   variant="outline"
-                  className="bg-white text-purple-500 hover:bg-gray-100 hover:text-purple-300"
+                  className="bg-white text-neutral-950 hover:bg-gray-100 hover:text-purple-300"
                 >
                   {t("hero.cta.contact")}
                 </Button>
