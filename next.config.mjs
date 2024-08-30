@@ -1,6 +1,6 @@
 import analyzer from "@next/bundle-analyzer";
-import createNextIntlPlugin from 'next-intl/plugin';
- 
+import createNextIntlPlugin from "next-intl/plugin";
+
 const isGithubActions = process.env.GITHUB_ACTIONS || false;
 
 const withNextIntl = createNextIntlPlugin();
@@ -25,7 +25,6 @@ const nextConfig = withNextIntl({
   },
   trailingSlash: true,
   ...(isGithubActions && { output: "export" }),
-  output: "export"
 });
 
 const withBundleAnalyzer = analyzer({
