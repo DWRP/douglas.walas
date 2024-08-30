@@ -1,3 +1,4 @@
+"use client";
 import { useState, useEffect } from "react";
 import Header from "./sections/Header";
 import Main from "./sections/Main";
@@ -5,13 +6,17 @@ import Footer from "./sections/Footer";
 import Head from "next/head";
 import { useAppStore } from "@/store/app";
 import { Locale } from "@/locales";
+import { useRouter } from "next/navigation";
 
-export default function FullstackDeveloperLanding() {
+export default function RootPage() {
+  const router = useRouter();
+
   const { theme, setTheme, setLocale } = useAppStore();
   const [isDarkMode, setIsDarkMode] = useState(theme === "dark");
 
-  const changeLanguage = (newLang: Locale) => {
+  const changeLanguage = async (newLang: Locale) => {
     setLocale(newLang);
+    router.push(`/${newLang}${location.hash}`);
   };
 
   useEffect(() => {
